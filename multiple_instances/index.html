@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="vue-app-one">
+      <h1>{{title}}</h1>
+      <p>{{greet}}</p>
+    </div>
+
+    <div id="vue-app-two">
+      <h1>{{title}}</h1>
+      <p>{{greet}}</p>
+      <button @click='changeTitle'>Change one title</button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

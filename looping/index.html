@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="vue-app">
+      <h1>Looping</h1>
+      <ul>
+        <li v-for='(character, index) in characters'>{{index}}. {{character}}</li>
+      </ul>
+      <ul>
+        <!-- v-for can be passed an index value -->
+        <li v-for='(ninja, index) in ninjas'>{{index}}. {{ninja.name}} - {{ninja.age}} </li>
+      </ul>
+      <!-- use template tag to not render container in DOM -->
+      <template v-for='(ninja, index) in ninjas'>
+        <h3>{{index}}. {{ninja.name}}</h3>
+        <p>{{ninja.age}}</p>
+      </template>
+      <!-- iterates through array -->
+      <template v-for='ninja in ninjas'>
+        <!-- iterates through objects in array -->
+        <!-- allowing us to find all key/value pairs without having to know their names -->
+        <div v-for='(val, key) in ninja'>
+          <p>{{key}} - {{val}}</p>
+        </div>
+      </template>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
