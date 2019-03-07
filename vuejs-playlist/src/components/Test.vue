@@ -1,20 +1,42 @@
 <template>
-  <div class="hello">
-    <h1>{{title}}</h1>
-    <Ninja />
+  <div>
+    <Header :title='title' @changeTitle='updateTitle($event)' />
+    <Ninja :ninjas='ninjas' />
+    <Footer :title='title' @parentTitle='fromParentTitle($event)'/>
   </div>
 </template>
 
 <script>
 import Ninja from './Ninja.vue'
+import Header from './Header.vue'
+import Footer from './Footer.vue'
+
 export default {
   name: 'Test',
   components: {
-    Ninja
+    Ninja,
+    Header,
+    Footer
   },
   data () {
     return {
-      title: 'Ninja App'
+      ninjas: [
+        {name: 'Ryu', specialty: 'Vue Components', show: false},
+        {name: 'Crystal', specialty: 'HTML Wizardy', show: false},
+        {name: 'Hitoshi', specialty: 'Click Events', show: false},
+        {name: 'Tango', specialty: 'Conditionals', show: false},
+        {name: 'Kami', specialty: 'Webpack', show: false},
+        {name: 'Yoshi', specialty: 'Data Diggin', show: false}
+      ],
+      title: 'Vue Ninjas'
+    }
+  },
+  methods: {
+    updateTitle (updatedTitle) {
+      this.title = updatedTitle;
+    },
+    fromParentTitle (data) {
+      this.title = data;
     }
   }
 }
@@ -22,18 +44,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
