@@ -1,17 +1,22 @@
 <template lang="pug">
   div#app
-    showBlogs
+    NavBar
+    router-view
 </template>
 
 <script>
 import addBlog from './components/addBlog.vue'
 import showBlogs from './components/showBlogs.vue'
+import listBlogs from './components/listBlogs.vue'
+import NavBar from './components/nav.vue'
 
 export default {
   name: 'app',
   components: {
     addBlog,
-    showBlogs
+    showBlogs,
+    listBlogs,
+    NavBar
   },
   data () {
     return {

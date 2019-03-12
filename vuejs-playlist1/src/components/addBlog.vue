@@ -1,5 +1,6 @@
 <template lang='pug'>
   div#add-blog
+    NavBar
     h2 Add a New Blog Post
     form(v-if="!submitted")
       label Blog Title
