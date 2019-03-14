@@ -2,15 +2,57 @@
   nav
     ul
       li
-        router-link(:to="{name: 'showBlogs'}") Show Blog
-      li
+        router-link(:to="{name: 'home'}") Show Blog
+      li(v-if="isLoggedIn")
         router-link(:to="{name: 'addBlog'}") Add Blog
+      li(v-if="isLoggedIn")
+        button(@click="logout") Logout
+      li(v-if="!isLoggedIn")
+        router-link(:to="{name: 'login'}") Login
   </header>
 </template>
 
 <script>
+import{ auth } from '../main'
 export default {
+  name: 'NavBar',
+  data () {
+    return {
+      isLoggedIn: false,
+      currentUser: false
+    }
+  },
+  created () {
+    if(auth.currentUser) {
+      this.isLoggedIn = true;
+      this.currentUser = auth.currentUser.email;
+    }
+  },
+  methods: {
+    logout () {
+      auth.signOut()
+        .then( () => {
+          this.isLoggedIn = false;
+          this.$router.push('/login');
+        })
+        .catch( err => {
+          console.log(err.message);
+        })
+    }
+  },
+  watch: {
+    '$route'(to, from){
+      if(from.name == 'login') {
+        this.$router.go({
+          path: '/',
+          query: this.fullPath
+        });
 
+      } else {
+        console.log('failed');
+      }
+    }
+  }
 }
 </script>
 

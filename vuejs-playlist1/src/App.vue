@@ -5,10 +5,12 @@
 </template>
 
 <script>
+import NavBar from './components/nav.vue'
 import addBlog from './components/addBlog.vue'
 import showBlogs from './components/showBlogs.vue'
 import listBlogs from './components/listBlogs.vue'
-import NavBar from './components/nav.vue'
+import updateBlog from './components/updateBlog.vue'
+import login from './components/Login.vue'
 
 export default {
   name: 'app',
@@ -16,7 +18,9 @@ export default {
     addBlog,
     showBlogs,
     listBlogs,
-    NavBar
+    NavBar,
+    updateBlog,
+    login
   },
   data () {
     return {

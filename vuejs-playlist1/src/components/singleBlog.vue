@@ -1,10 +1,13 @@
 <template lang="pug">
-  div#single-blogs
+  div#single-blog
     h1 {{ blog.title }}
-    article {{ blog.body }}
+    article {{ blog.content }}
+    router-link(:to="'/updateBlog/' + this.id")
+      button update blog
 </template>
 
 <script>
+import { db } from '../main'
   export default {
     data () {
       return {
@@ -14,19 +17,20 @@
         blog: {}
       }
     },
-    created () {
-      // uses vue-resource for an http request
-      this.$http.get(`https://jsonplaceholder.typicode.com/posts/${this.id}`)
-      // after receiving data set the response as a parameter
-      .then( response => {
-        // set the value of the empty blog object
-        // to the responses body.
-        this.blog = response.body
-      });
+    methods: {
+      created () {
+        db.collection('blog-posts').doc(this.id).get()
+          .then( response => {
+            this.blog = response.data();
+          })
+      }
     }
   }
 </script>
 
 <style>
-
+#single-blog {
+  max-width: 960px;
+  margin: 0 auto;
+}
 </style>
